@@ -84,7 +84,7 @@ body {
     align-items: flex-start; /* 縦方向（交差軸）に上揃え */
 
     width:  800px;
-    height: 500px;
+    height: 700px;
 
     font-size: 24px;
     color: #fff;
@@ -228,6 +228,29 @@ body {
     white-space: nowrap;
 }
 
+#data1 {
+    position: absolute;
+    top: 12425px;
+    left: 15304px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width:  1000px;
+    height: 1400px;
+
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(055, 155, 155, 0.3);
+    padding: 10px;
+    border-radius: 50px;
+    font-family: '03SmartFontUI',Arial, sans-serif;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    line-height: 0px;
+}
+
 
 
 .container1 {
@@ -240,8 +263,8 @@ body {
     top: 10000px; /* 上からの位置 */
     left:10000px; /* 左からの位置 */
     transform: translate(-50%, -50%);
-    height: 100vh;
-    width: 100vw;
+    height: 100px;
+    width: 700px;
     opacity: 0;
     font-size: 20px;
     color: #cbf;
@@ -270,4 +293,38 @@ li a {
 
 li a:hover {
     text-decoration: none; /* ホバー時に下線を表示 */
+}
+
+.menu {
+    width: 950px;
+    margin: 0;
+    padding: 40px 0;
+}
+
+dl {
+    width: 950px;
+    display: table;
+    border: solid rgb(180,180,180,1);
+    border-width: 1px 0;
+    padding: 1.5rem;
+    margin: 0px;
+}
+
+dt {
+    list-style: disc inside;
+    display: list-item;
+}
+
+dt a {
+    text-decoration: underline; /* 初期状態の下線を消す */
+    color: rgb(40, 215, 215); /* リンクの色を緑に設定 */
+}
+
+dt a:hover {
+    text-decoration: none; /* ホバー時に下線を表示 */
+}
+
+dd {
+    text-align: right;
+    display: table-cell;
 }
