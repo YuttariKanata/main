@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
 
     // サイトが開いたときに実行する関数
     function onSiteLoad() {
         //alert("サイトが読み込まれました");
         //alert(window.innerHeight);
         //alert(window.innerWidth);
-        document.documentElement.scrollWidth
+
         window.scrollTo({
             top:  ((document.documentElement.scrollHeight - window.innerHeight)/2),
             left: ((document.documentElement.scrollWidth  - window.innerWidth )/2),
@@ -19,6 +19,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+// mediatype true:PCなど false:スマホなど
+let mediatype=false;
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 768) {
+        mediatype = true;
+        zoomlevel = 1;
+    }else{
+        mediatype = false;
+        zoomlevel = 1000 / window.innerWidth;
+        
+    }
+    console.log('mediatype:', mediatype);
+    console.log('zoomlevel:', zoomlevel);
+});
+
+
 function updateElementPosition() {
     // 要素を取得
     var element = document.getElementById('myElement');
@@ -27,10 +43,18 @@ function updateElementPosition() {
     var rect = element.getBoundingClientRect();
 
     // scale()を考慮する
-    var x = (-1)*rect.left + window.innerWidth / 2
-    var y = (-1)*rect.top + window.innerHeight / 2
-    x = Math.round(x / zoomlevel);
-    y = Math.round(y / zoomlevel);
+    var x;
+    var y;
+    if (mediatype) {
+        x = (-1)*rect.left + window.innerWidth / 2;
+        y = (-1)*rect.top + window.innerHeight / 2;
+        x = Math.round(x / zoomlevel);
+        y = Math.round(y / zoomlevel);
+    } else {
+        x = (-1)*rect.left + window.innerWidth / 2;
+        y = (-1)*rect.top + window.innerHeight / 2;
+    }
+
     
     // 要素の位置をコンソールに出力
     //console.log('要素の位置:');
@@ -44,21 +68,24 @@ function updateElementPosition() {
     // 取得した座標を表示
     document.getElementById('coordinates2').textContent = "Your coordinates: (" + x + ", " + y + ")";
 
-    // 「今表示されている画面の中心」を取得
-    let centerX = window.scrollX + window.innerWidth / 2;
-    let centerY = window.scrollY + window.innerHeight / 2;
+    if (mediatype) {// for PC
+        // 「今表示されている画面の中心」を取得
+        let centerX = window.scrollX + window.innerWidth / 2;
+        let centerY = window.scrollY + window.innerHeight / 2;
 
-    // bodyにtransformとtransform-originを設定
-    document.body.style.transformOrigin = `${centerX}px ${centerY}px`;
+        // bodyにtransformとtransform-originを設定
+        document.body.style.transformOrigin = `${centerX}px ${centerY}px`;
 
-    // scale()を使うとposition:fixed;の挙動がおかしくなる(包含ブロックが変わるせい)ので、位置を移動するたびにcoordinatesの位置も移動させる あと大きさも一定になるように変える
-    let coo = document.getElementById('coordinates2');
-    coo.style.fontSize = `${10 / zoomlevel}px`;
-    coo.style.padding = `${5 / zoomlevel}px`;
-    coo.style.width = `${170 / zoomlevel}px`;
-    coo.style.borderRadius = `${5 / zoomlevel}px`;
-    coo.style.left = `${centerX - window.innerWidth / (zoomlevel * 2)}px`; // - で左端 (+なら右端)
-    coo.style.top = `${centerY + window.innerHeight / (zoomlevel * 2) - coo.offsetHeight - 10 / zoomlevel}px`; // - で上端 (+なら下端)
+        // scale()を使うとposition:fixed;の挙動がおかしくなる(包含ブロックが変わるせい)ので、位置を移動するたびにcoordinatesの位置も移動させる あと大きさも一定になるように変える
+        let coo = document.getElementById('coordinates2');
+        coo.style.fontSize = `${10 / zoomlevel}px`;
+        coo.style.padding = `${5 / zoomlevel}px`;
+        coo.style.width = `${170 / zoomlevel}px`;
+        coo.style.borderRadius = `${5 / zoomlevel}px`;
+        coo.style.left = `${centerX - window.innerWidth / (zoomlevel * 2)}px`; // - で左端 (+なら右端)
+        coo.style.top = `${centerY + window.innerHeight / (zoomlevel * 2) - coo.offsetHeight - 10 / zoomlevel}px`; // - で上端 (+なら下端)
+    }
+
 }
 
 // ページが読み込まれたときに位置を更新
@@ -107,57 +134,65 @@ document.addEventListener('mouseup', () => {
 
 // マウスホイールでのスクロールによる拡大縮小
 document.addEventListener('wheel', function(event) {
-    // deltaYを336*10で割って加算(336は俺のマウスホイールのノッチ1つ分でのevent.deltaYの値(実測値))
-    totalScroll += event.deltaY / 3360;
+    if (mediatype) {
+        // deltaYを336*10で割って加算(336は俺のマウスホイールのノッチ1つ分でのevent.deltaYの値(実測値))
+        totalScroll += event.deltaY / 3360;
 
-    // zoomlevelをeの-totalScroll乗にする 人間工学?
-    zoomlevel = Math.exp(-totalScroll);
+        // zoomlevelをeの-totalScroll乗にする 人間工学?
+        zoomlevel = Math.exp(-totalScroll);
 
-    //console.log('Total Scroll:', totalScroll);
-    console.log('Zoom Level:', zoomlevel);
+        //console.log('Total Scroll:', totalScroll);
+        console.log('Zoom Level:', zoomlevel);
 
-    /*
-    zoom中心となるdocument.body.style.transformOriginの更新はここではなくupdateElementPosition関数内に書いた。
-    なぜなら
+        /*
+        zoom中心となるdocument.body.style.transformOriginの更新はここではなくupdateElementPosition関数内に書いた。
+        なぜなら
 
-    // スクロールイベントで位置を更新
-    window.addEventListener('scroll', updateElementPosition);
+        // スクロールイベントで位置を更新
+        window.addEventListener('scroll', updateElementPosition);
 
-    // リサイズイベントで位置を更新
-    window.addEventListener('resize', updateElementPosition);
-    
-    と書いておいているからupdateElementPositionの中のほうがいい
-    (この関数内でOriginの更新をすると変な挙動になった)
-    */
+        // リサイズイベントで位置を更新
+        window.addEventListener('resize', updateElementPosition);
+        
+        と書いておいているからupdateElementPositionの中のほうがいい
+        (この関数内でOriginの更新をすると変な挙動になった)
+        */
 
-    // zoomプロパティを使えば簡単かもしれないし、綺麗になるかもしれない(実際に綺麗に拡大縮小される)
-    // しかし欠点として、origin(拡大するときの中心)をページの左上から変えられない
-    // なので仕方なくscale()を使っている。そのせいでいろんなところを動かすたびに変えないといけない
-    
-    document.body.style.transform = `scale(${zoomlevel})`;
+        // zoomプロパティを使えば簡単かもしれないし、綺麗になるかもしれない(実際に綺麗に拡大縮小される)
+        // しかし欠点として、origin(拡大するときの中心)をページの左上から変えられない
+        // なので仕方なくscale()を使っている。そのせいでいろんなところを動かすたびに変えないといけない
+        
+        document.body.style.transform = `scale(${zoomlevel})`;
 
-    updateElementPosition();
+        updateElementPosition();
+    } 
 });
 
 
 // scale()を使うと<a>によるサイト内の移動がおかしくなるのでそれ用の関数
-document.querySelectorAll('a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();  // デフォルトのリンク動作を防止
+document.addEventListener('DOMContentLoaded', () => {
+    // `mediatype` が true なら実行（PC でのみ）
+    if (!mediatype) return;
 
-        const targetId = this.getAttribute('href');  // クリックされたリンクのhref属性
-        const targetElement = document.querySelector(targetId);  // 対象の要素を取得
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();  // デフォルトのリンク動作を防止
 
-        if (targetElement) {
-            // 目標の要素が存在する場合、スクロール位置を補正
-            const targetRect = targetElement.getBoundingClientRect();
-            
-            // targetRectが返すtop,leftは現在のビューポートからの相対位置なのでscrollBy
-            window.scrollBy({
-                left: (targetRect.left + targetRect.width / 2 - window.innerWidth / 2) / zoomlevel,
-                top: (targetRect.top - 40) / zoomlevel,
-                behavior: 'smooth'  // スムーズスクロール
-            });
-        }
+            const targetId = this.getAttribute('href');  // クリックされたリンクのhref属性
+            const targetElement = document.querySelector(targetId);  // 対象の要素を取得
+
+            if (targetElement) {
+                // 目標の要素が存在する場合、スクロール位置を補正
+                const targetRect = targetElement.getBoundingClientRect();
+
+                // targetRectが返すtop,leftは現在のビューポートからの相対位置なのでscrollBy
+                window.scrollBy({
+                    left: (targetRect.left + targetRect.width / 2 - window.innerWidth / 2) / zoomlevel,
+                    top: (targetRect.top - 40) / zoomlevel,
+                    behavior: 'smooth'  // スムーズスクロール
+                });
+            }
+        });
     });
 });
+
