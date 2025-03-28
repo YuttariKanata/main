@@ -27,11 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
         zoomlevel = 1;
     }else{
         mediatype = false;
-        zoomlevel = 1000 / window.innerWidth;
+        zoomlevel = window.innerWidth / 1000;
         
     }
     console.log('mediatype:', mediatype);
     console.log('zoomlevel:', zoomlevel);
+    console.log('wd',window.innerWidth);
+
+    document.body.style.transform = `scale(${zoomlevel})`;
 });
 
 
@@ -109,25 +112,31 @@ let zoomlevel = 1;
 
 // ドラッグ開始
 document.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
-  scrollLeft = window.scrollX;
-  scrollTop = window.scrollY;
+    if (mediatype) {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        scrollLeft = window.scrollX;
+        scrollTop = window.scrollY;
+    }
 });
 
 // ドラッグ中
 document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  const deltaX = startX - e.clientX;
-  const deltaY = startY - e.clientY;
-  // scale()による移動量の変化を考慮する
-  window.scrollTo(scrollLeft + deltaX / zoomlevel, scrollTop + deltaY / zoomlevel);
+    if (mediatype) {
+        if (!isDragging) return;
+        const deltaX = startX - e.clientX;
+        const deltaY = startY - e.clientY;
+        // scale()による移動量の変化を考慮する
+        window.scrollTo(scrollLeft + deltaX / zoomlevel, scrollTop + deltaY / zoomlevel);
+    }
 });
 
 // ドラッグ終了
 document.addEventListener('mouseup', () => {
-    isDragging = false;
+    if (mediatype) {
+        isDragging = false;
+    }
 });
 
 
