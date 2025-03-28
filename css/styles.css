@@ -46,7 +46,7 @@ body {
         user-select: none;         /* Standard Browser */   
         overflow: auto;
     }
-  }
+}
 
 #grid1 {
     background-color: #333;
