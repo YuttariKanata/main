@@ -28,25 +28,6 @@ body {
     zoom: 1;
 }
 
-@media screen and (max-width: 768px) { /* for smartphone or tablet */
-
-    body {
-        font-family: '03SmartFontUI',Arial, sans-serif;
-        height: 20000px;
-        width: 20000px;
-        /*background-image: 
-            linear-gradient(to right , rgba(0,0,0,0.1) 1px, transparent 2px),
-            linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 2px);
-        background-size: 50px 50px; /* グリッドのサイズ */
-        background-color: #333;
-        
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none;    /* Firefox */
-        -ms-user-select: none;     /* Internet Explorer/Edge */
-        user-select: none;         /* Standard Browser */   
-        overflow: auto;
-    }
-}
 
 #grid1 {
     background-color: #333;
@@ -353,4 +334,203 @@ dt a:hover {
 dd {
     text-align: right;
     display: table-cell;
+}
+
+
+
+@media screen and (max-width: 768px) { /* for smartphone or tablet */
+
+    body {
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        height: 20000px;
+        width: 20000px;
+        /*background-image: 
+            linear-gradient(to right , rgba(0,0,0,0.1) 1px, transparent 2px),
+            linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 2px);
+        background-size: 50px 50px; /* グリッドのサイズ */
+        background-color: #333;
+        
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard Browser */   
+        overflow: auto;
+    }
+
+    #text1 {
+        position: absolute;
+        top: 10500px; /* 上からの位置 */
+        left: 10000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #text2 {
+        position: absolute;
+        top: 14500px; /* 上からの位置 */
+        left: 7000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(0, 100, 97, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #text3 {
+        position: absolute;
+        top: 10500px; /* 上からの位置 */
+        left: 17000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(137, 137, 0, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #text4 {
+        position: absolute;
+        top: 2000px; /* 上からの位置 */
+        left: 8000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  1700px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(57, 0, 137, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #text5 {
+        position: absolute;
+        top: 18000px; /* 上からの位置 */
+        left: 18000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(134, 0, 0, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #text6 {
+        position: absolute;
+        top: 1000px; /* 上からの位置 */
+        left: 2000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(85, 88, 255, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #Others {
+        position: absolute;
+        top: 18000px; /* 上からの位置 */
+        left: 4000px; /* 左からの位置 */
+    
+        display: flex;
+        flex-direction: column; /* アイテムを縦方向に並べる */
+        align-items: flex-start; /* 縦方向（交差軸）に上揃え */
+    
+        width:  800px;
+        height: 700px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.3); /* 背景色を半透明にしてテキストを読みやすく */
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+    
+    #data1 {
+        position: absolute;
+        top: 12425px;
+        left: 15304px;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    
+        width:  1000px;
+        height: 1600px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(055, 155, 155, 0.3);
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        line-height: 0px;
+    }
 }
