@@ -28,7 +28,7 @@ body {
     zoom: 1;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { /* for smartphone or tablet */
 
     body {
         font-family: '03SmartFontUI',Arial, sans-serif;
