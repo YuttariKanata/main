@@ -384,17 +384,16 @@ dd {
 }
 #dataTable th, #dataTable td {
     border: 1px solid #fff7;
+    box-shadow: 10px 10px 0px #0003;
     padding: 8px;
     text-align: left;
 }
 #dataTable th {
     background-color: #5f5f66;
-    border: 1px solid #fff7;
 }
 
 #datakey {
     width: 200px;
-    border: 1px solid #fff7;
 }
 
 .reflect_button {
