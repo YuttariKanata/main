@@ -628,4 +628,31 @@ dd {
         white-space: nowrap;
         line-height: 0px;
     }
+
+    #data2 {
+        position: absolute;
+        top: 10500px;
+        left: 8000px;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    
+        width:  1400px;
+        height: 500px;
+    
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(33, 33, 33, 0.7);
+        padding: 10px;
+        border-radius: 50px;
+        font-family: '03SmartFontUI',Arial, sans-serif;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+        border: solid rgba(100, 100, 100, 0.3);
+    
+        overflow: scroll;
+    }
 }
