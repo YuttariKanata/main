@@ -281,6 +281,8 @@ body {
 
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     border: solid rgba(100, 100, 100, 0.3);
+
+    overflow: scroll;
 }
 
 
